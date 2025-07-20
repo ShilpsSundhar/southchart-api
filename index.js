@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());  // ← This line allows all origins
 
 app.get('/api/chart', (req, res) => {
     const { dob, time, lat, lng } = req.query;
