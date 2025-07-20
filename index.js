@@ -32,4 +32,26 @@ app.get('/api/chart', (req, res) => {
     res.json(response);
 });
 
+export default function handler(req, res) {
+  // ✅ Add these 3 CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // ✅ Handle OPTIONS request (sent automatically by browser)
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
+  // 👉 Your existing code starts here
+  const { time, lat, lng, dob } = req.query;
+
+  // Your logic (example below)
+  res.status(200).json({
+    message: "Success",
+    input: { time, lat, lng, dob }
+  });
+}
+
 module.exports = app;
